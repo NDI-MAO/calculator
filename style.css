@@ -1,5 +1,10 @@
 body{
-    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 .keyboard, .left, .menu, .numbers, .operators{
     display: flex;
@@ -16,13 +21,29 @@ body{
     background-color: black;
     border-radius: 35px;
     border-style: solid;
-    border: 2px solid whitesmoke;
+    border: 2px solid rgb(229, 229, 229);
     box-shadow: 5px 10px 10px #888888;
  
 }
+.time{
+    color: whitesmoke;
+    font-family:sans-serif;
+    font-size: small;
+}
 .screen{
-    height: 250px;
- 
+    height: 220px;
+}
+.notch{
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 5px;
+    padding-left: 30px;
+    padding-right: 20px;
+    align-items: center;
+}
+img{
+width: 80px;
 }
 button{
 width: 50px;
@@ -44,6 +65,10 @@ font-size: 20px;
 font-weight: lighter;
 
 }
+.styleNumber:hover{
+
+    background-color: #888888;
+}
 .operators{
 flex-direction: column;
 padding-right: 20px;
@@ -57,7 +82,11 @@ align-content: center;
  color: white;
  font-size: 30px;
  font-family: monospace;
+}
+.styleOperator:hover{
 
+    background-color: white;
+    color: #fa9802;
 }
 .menu{
 padding-left: 20px;
@@ -68,9 +97,40 @@ gap: 10px 14px;
     background-color: #c8c8c8;
     font-size: 20px;
 }
+.styleMenu:hover{
+    background-color: white;
+}
 #style0{
     width: 114px;
     border-radius: 50px;
     text-align: left;
     padding-left:20px;
+}
+#backspace{
+transform: rotate(180deg);
+}
+.footer{
+   
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+
+}
+.navBar{
+    width: 90px;
+    height: 4px;
+    background-color: white;
+    border-radius: 10px;
+}
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color:#333333;
+    color:white;
+    height: 40px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: small;    
 }
