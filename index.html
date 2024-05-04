@@ -8,6 +8,18 @@
 </head>
 <body>
     <div class="container">
+        <div class="notch">
+            <div class="time">
+                <script>
+                   function twoDigitMinutes(d) {
+  return d.getMinutes().toString().padStart(2, '0');
+}
+
+document.write(new Date().getHours() + ":" + twoDigitMinutes(new Date()));
+                </script>
+            </div>
+            <img src="./Frame 3.svg" alt="">
+        </div>
         <div class="screen">
             <div></div>
             <div></div>
@@ -18,7 +30,7 @@
                 <div class="menu">
                     <button class="styleMenu">AC</button>
                     <button class="styleMenu">C</button>
-                    <button class="styleMenu">⌦</button>
+                    <button class="styleMenu" id="backspace">⌦</button>
                 </div>
                 <div class="numbers">
                     <button class="styleNumber">7</button>
@@ -44,10 +56,14 @@
             </div>
 
         </div>
-        <div></div>
+        <div class="footer">
+            <div class="navBar"></div>
+        </div>
 
     </div>
-    <div></div>
+    <footer>
+       Copyright © <script> document.write(new Date().getFullYear())</script> NDI-MAO | The Odin Project
+    </footer>
     
 </body>
 </html>
