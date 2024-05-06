@@ -1,5 +1,5 @@
 body{
-    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-family:'Courier New', Courier, monospace;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -62,7 +62,7 @@ border: none;
 background-color: #333333;
 color: white;
 font-size: 20px;
-font-weight: lighter;
+transition: .5s;
 
 }
 .styleNumber:hover{
@@ -81,7 +81,9 @@ align-content: center;
  background-color: #fa9802;
  color: white;
  font-size: 30px;
- font-family: monospace;
+ font-family:'Courier New', Courier, monospace;
+ transition: .5s;
+ 
 }
 .styleOperator:hover{
 
@@ -96,6 +98,7 @@ gap: 10px 14px;
 .styleMenu{
     background-color: #c8c8c8;
     font-size: 20px;
+    transition: .5s;
 }
 .styleMenu:hover{
     background-color: white;
