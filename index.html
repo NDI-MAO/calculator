@@ -12,46 +12,45 @@
             <div class="time">
                 <script>
                    function twoDigitMinutes(d) {
-  return d.getMinutes().toString().padStart(2, '0');
-}
+                return d.getMinutes().toString().padStart(2, '0');}
 
-document.write(new Date().getHours() + ":" + twoDigitMinutes(new Date()));
+                document.write(new Date().getHours() + ":" + twoDigitMinutes(new Date()));
                 </script>
             </div>
             <img src="./Frame3.svg" alt="">
         </div>
         <div class="screen">
-            <div></div>
-            <div></div>
+            <div id="result"></div>
+            <div  id="display"></div>
 
         </div>
         <div class="keyboard">
             <div class="left">
                 <div class="menu">
-                    <button class="styleMenu">AC</button>
-                    <button class="styleMenu">C</button>
-                    <button class="styleMenu" id="backspace">⌦</button>
+                    <button class="menuButtons">AC</button>
+                    <button class="menuButtons" id="backspace">⌦</button>
+                    <button class="menuButtons">%</button>
                 </div>
                 <div class="numbers">
-                    <button class="styleNumber">7</button>
-                    <button class="styleNumber">8</button>
-                    <button class="styleNumber">9</button>
-                    <button class="styleNumber">4</button>
-                    <button class="styleNumber">5</button>
-                    <button class="styleNumber">6</button>
-                    <button class="styleNumber">1</button>
-                    <button class="styleNumber">2</button>
-                    <button class="styleNumber">3</button>
-                    <button class="styleNumber" id="style0">0</button>
-                    <button class="styleNumber">.</button>
+                    <button class="numberButtons">7</button>
+                    <button class="numberButtons">8</button>
+                    <button class="numberButtons">9</button>
+                    <button class="numberButtons">4</button>
+                    <button class="numberButtons">5</button>
+                    <button class="numberButtons">6</button>
+                    <button class="numberButtons">1</button>
+                    <button class="numberButtons">2</button>
+                    <button class="numberButtons">3</button>
+                    <button class="numberButtons" id="style0">0</button>
+                    <button class="numberButtons">.</button>
                 </div>
             </div>
             <div class="operators">
-                <button class="styleOperator">÷</button>
-                <button class="styleOperator">×</button>
-                <button class="styleOperator">-</button>
-                <button class="styleOperator">+</button>
-                <button class="styleOperator">=</button>
+                <button class="opButtons">÷</button>
+                <button class="opButtons">×</button>
+                <button class="opButtons">-</button>
+                <button class="opButtons">+</button>
+                <button class="opButtons">=</button>
 
             </div>
 
@@ -61,6 +60,7 @@ document.write(new Date().getHours() + ":" + twoDigitMinutes(new Date()));
         </div>
 
     </div>
+    <script src="./script.js"></script>
     <footer>
        Copyright © <script> document.write(new Date().getFullYear())</script> NDI-MAO | The Odin Project
     </footer>
