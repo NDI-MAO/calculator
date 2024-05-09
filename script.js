@@ -50,6 +50,15 @@ equalSign.addEventListener("click", function() {
     result.textContent = `${previousNber} ${operation} ${currentNber}`;
     display.textContent = answer;  
     console.log(`Answer: ${answer}`);
- 
+  
+  currentNber = answer.toString();
+         
+  operation = "";
+  if(operation !==""){
+  result.textContent = previousNber;
+  }
+  console.log(`Previous Number: ${previousNber}`);
+  console.log(`Current Number: ${currentNber}`);
+  console.log(`Operation: ${operation}`);
 });
   
