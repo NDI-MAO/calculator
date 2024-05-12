@@ -9,7 +9,9 @@ const backspace = document.getElementById('backspace');
 let previousNber = "";
 let currentNber = "";
 let operation = "";
+let answer;
 display.textContent=0;
+
 numberButtons.forEach(button => {
   button.addEventListener('click', () => {
     currentNber += button.textContent;
@@ -20,18 +22,30 @@ numberButtons.forEach(button => {
 opButtons.forEach(button => {
   button.addEventListener('click', () => {
     if (currentNber !== "") {
-      previousNber = parseFloat(currentNber);
+      previousNber = currentNber;
       operation = button.textContent;
       currentNber = "";
       result.textContent = `${previousNber} ${operation}`;
+    }else if(operation!== ""){
+      operation=button.textContent;
+      result.textContent = `${previousNber} ${operation}`;
     }
+    console.log(`Operation: ${operation}`);
   });
+  button.addEventListener("mouseenter", function(e){
+    e.target.style.backgroundColor= "white";
+    e.target.style.color = "#fa9802";
+    e.currentTarget.addEventListener("mouseleave", function(){
+      e.target.style.backgroundColor= ""; 
+      e.target.style.color = "";
+    });
+  })
 });
 
+
 equalSign.addEventListener("click", function() {
-    let answer;
-    let a = (previousNber);
-    let b = (currentNber);
+    let a = parseFloat(previousNber);
+    let b = parseFloat(currentNber);
     if (operation == "+") {
         answer = a + b;
     } else if (operation == "-") {
@@ -49,15 +63,15 @@ equalSign.addEventListener("click", function() {
         return;
     }
     result.textContent = `${previousNber} ${operation} ${currentNber}`;
-    display.textContent = answer;  
+    display.textContent = answer.toString();  
     console.log(`Answer: ${answer}`);
-  
-  currentNber = answer.toString();
-         
-  operation = "";
-  if(operation !==""){
-  result.textContent = previousNber;
+    currentNber = parseFloat(answer);
+    //currentNber = "";
+    operation = "";
+    if(operation !==""){
+    result.textContent = previousNber;
   }
+  
   console.log(`Previous Number: ${previousNber}`);
   console.log(`Current Number: ${currentNber}`);
   console.log(`Operation: ${operation}`);
@@ -78,9 +92,7 @@ menuButtons.forEach(button => {
       }else if (menu === "%"){
           answer =((currentNber)/100).toFixed(2);
           result.textContent = `${currentNber} ${menu}`;
+          display.textContent = answer;
       }
-      display.textContent = answer;
-      currentNber = answer;
-operation = "";
   })
 }) 
