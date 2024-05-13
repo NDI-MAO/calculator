@@ -85,7 +85,8 @@ equalSign.addEventListener("click", function() {
       answer = base.toFixed(2) + "e" + exponent;
     }
     result.textContent = `${previousNber.toLocaleString('en-US')} ${operation} ${currentNber}`;
-    display.textContent = answer.toLocaleString('en-US');  
+    display.textContent = answer.toLocaleString('en-US');
+    display.style.fontSize = adjustFontSize(display.textContent) + 'px';
     console.log(`Answer: ${answer}`);
     currentNber = parseFloat(answer);
     //currentNber = "";
@@ -108,13 +109,16 @@ menuButtons.forEach(button => {
           operation="";
           result.textContent="";
           display.textContent =0;
+          display.style.fontSize = adjustFontSize(display.textContent) + 'px';
       }else if(menu === "⌦"){
           currentNber= currentNber.slice(0, -1);
           display.textContent = currentNber;
+          display.style.fontSize = adjustFontSize(display.textContent) + 'px';
       }else if (menu === "%"){
           answer =((currentNber)/100).toFixed(2);
           result.textContent = `${currentNber.toLocaleString('en-US')} ${menu}`;
           display.textContent = answer.toLocaleString('en-US');
+          display.style.fontSize = adjustFontSize(display.textContent) + 'px';
       }
   })
 }) 
