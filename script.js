@@ -13,13 +13,27 @@ let answer;
 display.textContent=0;
 
 //Event listener to receive numbers to operate
-numberButtons.forEach(button => {
+/*numberButtons.forEach(button => {
   button.addEventListener('click', () => {
     currentNber += button.textContent;
     display.textContent = parseFloat(currentNber).toLocaleString('en-US'); 
     display.style.fontSize = adjustFontSize(display.textContent) + 'px';
   });
+});*/
+numberButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    if (button.textContent === ".") {
+      currentNber += "0"+ button.textContent;
+      display.textContent = parseFloat(currentNber)//.toLocaleString('en-US'); 
+      //currentNber = parseFloat(currentNber);
+    } else if (button.textContent !== ".") {
+      currentNber += button.textContent;
+    }
+    display.textContent = parseFloat(currentNber).toLocaleString('en-US'); 
+    display.style.fontSize = adjustFontSize(display.textContent) + 'px';
+  });
 });
+
 
 //Event listener to receive operation
 opButtons.forEach(button => {
@@ -85,8 +99,9 @@ equalSign.addEventListener("click", function() {
     if (Math.abs(answer) > 1000000000) {
       const exponent = Math.floor(Math.log10(Math.abs(answer)));
       const base = answer / Math.pow(10, exponent);
-      answer = (base.toFixed(4) + "e" + exponent + (base !== Math.floor(base) ? ")" : ""));
+      answer = (base.toFixed(6) + "e" + exponent); // Always add parenthesis
     }
+    
     result.textContent = `${previousNber.toLocaleString('en-US')} ${operation} ${currentNber}`;
     display.textContent = answer.toLocaleString('en-US');
     display.style.fontSize = adjustFontSize(display.textContent) + 'px';
@@ -103,6 +118,7 @@ equalSign.addEventListener("click", function() {
   console.log(`Operation: ${operation}`);
 });
 
+//function to manage menu tab (AC, Backspace and percentage)
 menuButtons.forEach(button => {
   button.addEventListener("click", ()=>{
       let menu = button.textContent;
