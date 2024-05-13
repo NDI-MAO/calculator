@@ -12,23 +12,22 @@ let operation = "";
 let answer;
 display.textContent=0;
 
+//Event listener to receive numbers to operate
 numberButtons.forEach(button => {
   button.addEventListener('click', () => {
     currentNber += button.textContent;
-    display.textContent = parseFloat(currentNber).toLocaleString('en-US'); // Assuming you have the formatNumberWithCommas function
+    display.textContent = parseFloat(currentNber).toLocaleString('en-US'); 
     display.style.fontSize = adjustFontSize(display.textContent) + 'px';
   });
 });
 
-
+//Event listener to receive operation
 opButtons.forEach(button => {
   button.addEventListener('click', () => {
     if (currentNber !== "") {
       if (!isNaN(parseFloat(currentNber))) {
         previousNber = parseFloat(currentNber);
-      } else {
-        // Handle invalid input (optional: display error message)
-      }
+      } 
       operation = button.textContent;
       currentNber = "";
       result.textContent = `${previousNber.toLocaleString('en-US')} ${operation}`;
@@ -38,6 +37,8 @@ opButtons.forEach(button => {
     }
     console.log(`Operation: ${operation}`);
   });
+
+  //Event listener to change background when clicking operation
   button.addEventListener("mouseenter", function(e){
     e.target.style.backgroundColor= "white";
     e.target.style.color = "#fa9802";
@@ -47,6 +48,8 @@ opButtons.forEach(button => {
     });
   })
 });
+
+//Function to adjust font size according to number of inputs
 function adjustFontSize(display) {
   const baseFontSize = 65; 
   const fontSizes = [65, 60, 55, 50, 45]; 
@@ -55,11 +58,10 @@ function adjustFontSize(display) {
   if (numDigits > 6) {
     fontSize = fontSizes[Math.min(numDigits - 7, fontSizes.length - 1)];
   }
-
   return fontSize;
 }
 
-
+//Event listener to calculate the answer
 equalSign.addEventListener("click", function() {
     let a = parseFloat(previousNber);
     let b = parseFloat(currentNber);
@@ -79,10 +81,11 @@ equalSign.addEventListener("click", function() {
         display.textContent = answer;
         return;
     }
-    if (Math.abs(answer) > 1000000) {
+    //Function to add exponent when answer to is large numbers
+    if (Math.abs(answer) > 1000000000) {
       const exponent = Math.floor(Math.log10(Math.abs(answer)));
       const base = answer / Math.pow(10, exponent);
-      answer = base.toFixed(2) + "e" + exponent;
+      answer = (base.toFixed(4) + "e" + exponent + (base !== Math.floor(base) ? ")" : ""));
     }
     result.textContent = `${previousNber.toLocaleString('en-US')} ${operation} ${currentNber}`;
     display.textContent = answer.toLocaleString('en-US');
@@ -112,12 +115,12 @@ menuButtons.forEach(button => {
           display.style.fontSize = adjustFontSize(display.textContent) + 'px';
       }else if(menu === "⌦"){
           currentNber= currentNber.slice(0, -1);
-          display.textContent = currentNber;
+          display.textContent = parseFloat(currentNber).toLocaleString('en-US');
           display.style.fontSize = adjustFontSize(display.textContent) + 'px';
       }else if (menu === "%"){
           answer =((currentNber)/100).toFixed(2);
-          result.textContent = `${currentNber.toLocaleString('en-US')} ${menu}`;
-          display.textContent = answer.toLocaleString('en-US');
+          result.textContent = `${parseFloat(currentNber).toLocaleString('en-US')} ${menu}`;
+          display.textContent = parseFloat(answer).toLocaleString('en-US');
           display.style.fontSize = adjustFontSize(display.textContent) + 'px';
       }
   })
