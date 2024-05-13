@@ -15,20 +15,26 @@ display.textContent=0;
 numberButtons.forEach(button => {
   button.addEventListener('click', () => {
     currentNber += button.textContent;
-    display.textContent = currentNber;
+    display.textContent = parseFloat(currentNber).toLocaleString('en-US'); // Assuming you have the formatNumberWithCommas function
+    display.style.fontSize = adjustFontSize(display.textContent) + 'px';
   });
 });
+
 
 opButtons.forEach(button => {
   button.addEventListener('click', () => {
     if (currentNber !== "") {
-      previousNber = currentNber;
+      if (!isNaN(parseFloat(currentNber))) {
+        previousNber = parseFloat(currentNber);
+      } else {
+        // Handle invalid input (optional: display error message)
+      }
       operation = button.textContent;
       currentNber = "";
-      result.textContent = `${previousNber} ${operation}`;
+      result.textContent = `${previousNber.toLocaleString('en-US')} ${operation}`;
     }else if(operation!== ""){
       operation=button.textContent;
-      result.textContent = `${previousNber} ${operation}`;
+      result.textContent = `${previousNber.toLocaleString('en-US')} ${operation}`;
     }
     console.log(`Operation: ${operation}`);
   });
@@ -41,6 +47,17 @@ opButtons.forEach(button => {
     });
   })
 });
+function adjustFontSize(display) {
+  const baseFontSize = 65; 
+  const fontSizes = [65, 60, 55, 50, 45]; 
+  const numDigits = display.length;
+  let fontSize = baseFontSize;
+  if (numDigits > 6) {
+    fontSize = fontSizes[Math.min(numDigits - 7, fontSizes.length - 1)];
+  }
+
+  return fontSize;
+}
 
 
 equalSign.addEventListener("click", function() {
@@ -62,14 +79,19 @@ equalSign.addEventListener("click", function() {
         display.textContent = answer;
         return;
     }
-    result.textContent = `${previousNber} ${operation} ${currentNber}`;
-    display.textContent = answer.toString();  
+    if (Math.abs(answer) > 1000000) {
+      const exponent = Math.floor(Math.log10(Math.abs(answer)));
+      const base = answer / Math.pow(10, exponent);
+      answer = base.toFixed(2) + "e" + exponent;
+    }
+    result.textContent = `${previousNber.toLocaleString('en-US')} ${operation} ${currentNber}`;
+    display.textContent = answer.toLocaleString('en-US');  
     console.log(`Answer: ${answer}`);
     currentNber = parseFloat(answer);
     //currentNber = "";
     operation = "";
     if(operation !==""){
-    result.textContent = previousNber;
+    result.textContent = previousNber.toLocaleString('en-US');
   }
   
   console.log(`Previous Number: ${previousNber}`);
@@ -91,8 +113,8 @@ menuButtons.forEach(button => {
           display.textContent = currentNber;
       }else if (menu === "%"){
           answer =((currentNber)/100).toFixed(2);
-          result.textContent = `${currentNber} ${menu}`;
-          display.textContent = answer;
+          result.textContent = `${currentNber.toLocaleString('en-US')} ${menu}`;
+          display.textContent = answer.toLocaleString('en-US');
       }
   })
 }) 
