@@ -13,28 +13,26 @@ let answer;
 display.textContent=0;
 
 //Event listener to receive numbers to operate
-/*numberButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    currentNber += button.textContent;
-    display.textContent = parseFloat(currentNber).toLocaleString('en-US'); 
-    display.style.fontSize = adjustFontSize(display.textContent) + 'px';
-  });
-});*/
 numberButtons.forEach(button => {
   button.addEventListener('click', () => {
-    if (button.textContent === ".") {
-      currentNber += "0"+ button.textContent;
-      display.textContent = parseFloat(currentNber)//.toLocaleString('en-US'); 
-      //currentNber = parseFloat(currentNber);
-    } else if (button.textContent !== ".") {
-      currentNber += button.textContent;
-    }
-    display.textContent = parseFloat(currentNber).toLocaleString('en-US'); 
+    if(currentNber.length <9){
+      if (button.textContent === ".") {
+        // Check if current number is empty
+        if (currentNber === "") {
+          currentNber = "0.";
+          display.textContent =currentNber.toLocaleString('en-US'); 
+        } else if (currentNber.indexOf(".") === -1) {
+          currentNber += button.textContent;
+          display.textContent =currentNber.toLocaleString('en-US'); 
+        }
+      } else if (button.textContent !== ".") {
+        currentNber += button.textContent;
+        display.textContent =parseFloat(currentNber).toLocaleString('en-US'); 
     display.style.fontSize = adjustFontSize(display.textContent) + 'px';
+      }
+    }
   });
 });
-
-
 //Event listener to receive operation
 opButtons.forEach(button => {
   button.addEventListener('click', () => {
@@ -65,12 +63,12 @@ opButtons.forEach(button => {
 
 //Function to adjust font size according to number of inputs
 function adjustFontSize(display) {
-  const baseFontSize = 65; 
-  const fontSizes = [65, 60, 55, 50, 45]; 
+  const baseFontSize = 70; 
+  const fontSizes = [70, 60, 55, 50, 44]; 
   const numDigits = display.length;
   let fontSize = baseFontSize;
   if (numDigits > 6) {
-    fontSize = fontSizes[Math.min(numDigits - 7, fontSizes.length - 1)];
+    fontSize = fontSizes[Math.min(numDigits - 6, fontSizes.length - 1)];
   }
   return fontSize;
 }
@@ -99,10 +97,14 @@ equalSign.addEventListener("click", function() {
     if (Math.abs(answer) > 1000000000) {
       const exponent = Math.floor(Math.log10(Math.abs(answer)));
       const base = answer / Math.pow(10, exponent);
-      answer = (base.toFixed(6) + "e" + exponent); // Always add parenthesis
+      if(answer%1 !==0){
+        answer = (base.toFixed(6) + "e" + exponent); 
+      }else{
+      answer = base + "e" + exponent;
+      }
     }
     
-    result.textContent = `${previousNber.toLocaleString('en-US')} ${operation} ${currentNber}`;
+    result.textContent = `${previousNber.toLocaleString('en-US')} ${operation} ${currentNber.toLocaleString('en-US')}`;
     display.textContent = answer.toLocaleString('en-US');
     display.style.fontSize = adjustFontSize(display.textContent) + 'px';
     console.log(`Answer: ${answer}`);
