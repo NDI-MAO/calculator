@@ -41,22 +41,21 @@ height: 30%;
 color: white;
 display: flex;
 flex-direction: column;
-justify-content: center;
-padding: 20px;
+padding:20px;
 
 }
 
 #display{
 text-align: end;
 text-overflow: clip;
-font-size: 65px;
+font-size: 70px;
 font-weight: lighter;
 height: 90px;
 overflow: hidden;
-white-space: nowrap; /* Prevent text wrapping */
-width: 250px;
-
-
+white-space: nowrap;
+display: flex;
+justify-content: flex-end;
+align-items: flex-end;
 }
 
 #result{
