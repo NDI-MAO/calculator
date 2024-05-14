@@ -64,11 +64,11 @@ opButtons.forEach(button => {
 //Function to adjust font size according to number of inputs
 function adjustFontSize(display) {
   const baseFontSize = 70; 
-  const fontSizes = [70, 60, 55, 50, 44]; 
+  const fontSizes = [70, 62, 0, 54, 47, 40];
   const numDigits = display.length;
   let fontSize = baseFontSize;
   if (numDigits > 6) {
-    fontSize = fontSizes[Math.min(numDigits - 6, fontSizes.length - 1)];
+    fontSize = fontSizes[Math.min(numDigits- 6, fontSizes.length - 1)];
   }
   return fontSize;
 }
