@@ -135,6 +135,10 @@ menuButtons.forEach(button => {
           currentNber= currentNber.slice(0, -1);
           display.textContent = parseFloat(currentNber).toLocaleString('en-US');
           display.style.fontSize = adjustFontSize(display.textContent) + 'px';
+          if (currentNber ===""){
+            display.textContent = 0;
+            display.style.fontSize = adjustFontSize(display.textContent) + 'px';
+          }
       }else if (menu === "%"){
           answer =((currentNber)/100).toFixed(2);
           result.textContent = `${parseFloat(currentNber).toLocaleString('en-US')} ${menu}`;
