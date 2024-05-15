@@ -144,6 +144,9 @@ menuButtons.forEach(button => {
           result.textContent = `${parseFloat(currentNber).toLocaleString('en-US')} ${menu}`;
           display.textContent = parseFloat(answer).toLocaleString('en-US');
           display.style.fontSize = adjustFontSize(display.textContent) + 'px';
+          if(currentNber === ""){
+            result.textContent = "0%"
+          }
       }
   })
 }) 
